@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="content-type">
+	<meta charset="utf-8">
+	<meta content="webkit" name="renderer">
+	<meta content="webkit" name="force-rendering">
+	<meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible">
+	<meta content="True" name="HandheldFriendly">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="theme-color" content="#f4f4f4">
+	<title>かなりあ查IP</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="src/logo/apple-touch-icon-next.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="src/logo/favicon-32x32-next.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="src/logo/favicon-16x16-next.png">
+	<link rel="mask-icon" href="src/logo/logo.svg" color="#f4f4f4">
+	<link href="src/main.css" rel="stylesheet">
+	<link href="src/darkmode.css" rel="stylesheet">
+	<link href="src/font-awesome/css/all.min.css" rel="stylesheet">
+	<script src="src/darkmode.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<header class="header">
+			<div class="header__left"></div>
+			<div class="header__right">
+				<a href="javascript:void(0);" id="btn-toggle-dark" rel="external nofollow noreferrer">
+				<i class="fa-solid fa-moon"></i>
+				</a> 
+			</div>
+		</header>
+		<div class="cover">
+			<div class="cover__logo">
+				<h1><b>かなりあ查IP</b></h1>
+			</div>
+			<div class="cover__intro">
+				<p>Find out your IP address and Geolocation.</p>
+			</div>
+		</div>
+		<main class="main">
+			<div class="post-list">
+				<div class="post-entry content-card">
+					<div id="iptable">
+					<p style="font-size:200%;">我的 IP 是 <font color="green"><span id="iptitlebox"></span></font></p>
+					<span id="citybox">我在 ...</span><br>
+					<span id="timezonebox">我所在的時區是 ...</span><br>
+					<span id="timebox">現在時間是 ...</span><br>
+					<span id="ispbox">我的網路提供商是 ...</span><br>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer class="footer">
+			<p class="footer-copyright"><a href="https://blog.canaria.cc/">canaria</a> © 2022 </p>
+		</footer>
+	</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script>
+		$(function() {
+			$.get("https://ipgeolocation.abstractapi.com/v1/?api_key=60becdaba3804f97bc3e0337eb6015e9", function(data) {
+				$('#iptitlebox').text(data.ip_address);
+				$('#citybox').text('我在 '+data.city+', '+data.country+' '+data.flag.emoji);
+				$('#timezonebox').text('我所在的時區是 '+data.timezone.name);
+				$('#timebox').text('現在時間是 '+data.timezone.current_time);
+				$('#ispbox').text('我的網路提供商是 '+data.connection.isp_name);
+			})
+		});
+		</script>
+</html>
